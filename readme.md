@@ -8,7 +8,7 @@ This challenge problem is focused on synthesizing planar linkage mechanisms such
 
 ```bash
 git clone git@github.com:HuaiboChen/2.156-CP1.git
-cd cd 2.156-CP1
+cd 2.156-CP1
 ```
 ## Create a Python 3.10 Environment with `uv`
 
