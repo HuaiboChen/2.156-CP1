@@ -17,6 +17,17 @@ N_PROBLEMS = len(REFERENCE_POINTS)
 # Mechanism complexity constraint stated in the notebook instructions.
 MAX_JOINTS = 20
 
+# Per-problem hypervolume normalizers. The reference boxes above have very different
+# areas (0.75x10, 1.75x10, 1.75x20), so the attainable hypervolume differs by roughly
+# an order of magnitude between problems. Averaging the raw values would silently give
+# the easier-to-score problems more weight, so each score is divided by the normalizer
+# below before averaging. Think of these as "a good score for this problem".
+SCORE_NORMALIZERS = [
+    0.5,   # Problem 1: Kangaroo 1 - round body
+    5.0,   # Problem 2: Kangaroo 2 - no ears, no tail
+    10.0,  # Problem 3: Kangaroo 3 - full meme
+]
+
 def make_empty_submission():
     return {f'Problem {i + 1}': [] for i in range(N_PROBLEMS)}
 
@@ -128,6 +139,16 @@ def evaluate_submission(
             # problem missing from the submission dictionary -> no credit
             scores.append(0.0)
 
-    return {'Overall Score': float(np.mean(scores)), 'Score Breakdown': {
-        f'Problem {i + 1}': float(scores[i]) for i in range(N_PROBLEMS)
-    }}
+    # Normalize each problem's hypervolume before averaging so that every target
+    # contributes equally, regardless of how large its reference box is.
+    normalized = [scores[i] / SCORE_NORMALIZERS[i] for i in range(N_PROBLEMS)]
+
+    return {
+        'Overall Score': float(np.mean(normalized)),
+        'Score Breakdown': {
+            f'Problem {i + 1}': float(scores[i]) for i in range(N_PROBLEMS)
+        },
+        'Normalized Score Breakdown': {
+            f'Problem {i + 1}': float(normalized[i]) for i in range(N_PROBLEMS)
+        },
+    }
