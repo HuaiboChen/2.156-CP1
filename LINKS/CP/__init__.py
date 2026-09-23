@@ -8,7 +8,7 @@ from pymoo.indicators.hv import HV
 # linkage cannot trace well, so it is scored against a looser reference point.
 REFERENCE_POINTS = [
     np.array([0.75, 10.0]),  # Problem 1: Kangaroo 1 - round body
-    np.array([1.0, 10.0]),  # Problem 2: Kangaroo 2 - no ears, no tail
+    np.array([1.2, 10.0]),  # Problem 2: Kangaroo 2 - no ears, no tail
     np.array([1.75, 20.0]),  # Problem 3: Kangaroo 3 - full meme
 ]
 
@@ -18,13 +18,13 @@ N_PROBLEMS = len(REFERENCE_POINTS)
 MAX_JOINTS = 20
 
 # Per-problem hypervolume normalizers. The reference boxes above have very different
-# areas (0.75x10, 1.75x10, 1.75x20), so the attainable hypervolume differs by roughly
+# areas (0.75x10, 1.2x10, 1.75x20), so the attainable hypervolume differs by roughly
 # an order of magnitude between problems. Averaging the raw values would silently give
 # the easier-to-score problems more weight, so each score is divided by the normalizer
 # below before averaging. Think of these as "a good score for this problem".
 SCORE_NORMALIZERS = [
     0.5,   # Problem 1: Kangaroo 1 - round body
-    5.0,   # Problem 2: Kangaroo 2 - no ears, no tail
+    1.5,   # Problem 2: Kangaroo 2 - no ears, no tail
     10.0,  # Problem 3: Kangaroo 3 - full meme
 ]
 
