@@ -22,3 +22,4 @@ Then activate the environment and install packages using pip:
 conda activate CP1
 pip install -r requirements_CPU.txt
 ```
+# 2.156-CP1
