@@ -8,7 +8,7 @@ from pymoo.indicators.hv import HV
 # linkage cannot trace well, so it is scored against a looser reference point.
 REFERENCE_POINTS = [
     np.array([0.75, 10.0]),  # Problem 1: Kangaroo 1 - round body
-    np.array([1.75, 10.0]),  # Problem 2: Kangaroo 2 - no ears, no tail
+    np.array([1.0, 10.0]),  # Problem 2: Kangaroo 2 - no ears, no tail
     np.array([1.75, 20.0]),  # Problem 3: Kangaroo 3 - full meme
 ]
 
