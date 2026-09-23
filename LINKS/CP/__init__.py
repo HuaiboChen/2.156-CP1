@@ -22,8 +22,11 @@ MAX_JOINTS = 20
 # an order of magnitude between problems. Averaging the raw values would silently give
 # the easier-to-score problems more weight, so each score is divided by the normalizer
 # below before averaging. Think of these as "a good score for this problem".
+# These values are empirical: they are picked so each target contributes roughly
+# equally to the overall score, not as an upper bound. A single problem's
+# normalized score can exceed 1.0 if you beat the "good score" it was set from.
 SCORE_NORMALIZERS = [
-    0.5,   # Problem 1: Kangaroo 1 - round body
+    2.0,   # Problem 1: Kangaroo 1 - round body
     1.5,   # Problem 2: Kangaroo 2 - no ears, no tail
     10.0,  # Problem 3: Kangaroo 3 - full meme
 ]

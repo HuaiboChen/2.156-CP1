@@ -21,5 +21,5 @@ source .venv/bin/activate
 
 ##  Install dependencies
 ```bash
-uv pip install -r requirements_CPU.txt
+uv pip install -r requirements.txt
 ```
